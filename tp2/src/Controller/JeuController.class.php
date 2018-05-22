@@ -26,4 +26,8 @@ class Jeu
 
   }
 
+  public function ListeJeu(){
+    return 'Liste des jeux';
+  }
+
 }
