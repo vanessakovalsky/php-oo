@@ -11,12 +11,8 @@ catch(Exception $e)
     die('Erreur : '.$e->getMessage());
 }
 
-include_once('src/Controller/JeuController.class.php');
-$jeu = new Jeu();
-$content = $jeu->AjoutJeu();
-
-include_once('src/Controller/UtilisateurController.class.php');
-$utilisateur = new Utilisateur();
-$content .= $utilisateur->AjoutUtilisateur();
+include_once('src/Controller/RouterController.class.php');
+$router = new RouterController();
+$content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions']);
 
 include_once('src/View/template.php');

@@ -1,5 +1,14 @@
 <?php
 
 include_once('header.html.php');
-echo $content;
+?>
+<main role="main" class="container">
+  <div class="container">
+  <?php
+  echo $content;
+  ?>
+  </div>
+<?php
 include_once('footer.html.php');
+?>
+</main>

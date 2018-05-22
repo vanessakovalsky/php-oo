@@ -13,9 +13,17 @@ class Jeu
     // code...
   }
 
-  public function AjoutJeu(){
-    // Enregistrement des données en base de données
-    return 'Mon jeu a été ajouté !';
+  public function AjoutJeu($values = null){
+    // Envoyer un formulaire
+    if(empty($values)){
+      $formulaire = include_once('./src/View/formulaire_ajout_jeu.html.php');
+      return $formulaire;
+    }
+    //traiter le formulaire
+    else{
+      $this->nom_jeu = $values['nom_jeu'];
+      return 'Mon jeu a été ajouté !';
+    }
   }
 
   public function SuppressionJeu(){
@@ -26,4 +34,7 @@ class Jeu
 
   }
 
+public function ListeJeu(){
+  
+}
 }

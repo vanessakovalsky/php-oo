@@ -10,6 +10,12 @@ class RouterController {
         $content = $jeu->ListeJeu();
         return $content;
         break;
+        case 'AjoutJeu':
+          include_once('JeuController.class.php');
+          $jeu = new Jeu();
+          $content = $jeu->AjoutJeu();
+          return $content;
+          break;
       case 'AjoutUtilisateur':
         include_once('UtilisateurController.class.php');
         $utilisateur = new Utilisateur();

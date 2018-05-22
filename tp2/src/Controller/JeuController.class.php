@@ -15,7 +15,7 @@ class Jeu
 
   public function AjoutJeu(){
     // Enregistrement des données en base de données
-    return 'Mon jeu a été ajouté !';
+    echo 'MOn '
   }
 
   public function SuppressionJeu(){
@@ -26,8 +26,5 @@ class Jeu
 
   }
 
-  public function ListeJeu(){
-    return 'Liste des jeux';
-  }
-
 }
+ ?>
