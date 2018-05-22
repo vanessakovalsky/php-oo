@@ -3,3 +3,6 @@
 - Créer l'arborescence du projet en respectant l'organisation MVC (Modèle Vue Controleur)
 - Créer les classes permettant d'ajouter / afficher / modifier / supprimer les données 
 des jeux, utilisateur, collection, commentaire (et autre si vous en avez modéliser d'autres)
+- Créer un template permettant de rendre dynamique le contenu
+- Créer un routeur qui appel en fonction de l'action demandé la bonne méthode du bon 
+controlleur
