@@ -1,0 +1,4 @@
+== TP1 - Modelisation ==
+- A partir du fichier cdc_kingoludo.odt, modeliser les classes, propriétés et méthodes
+de l'application 
+- A partir de cette modelisation, crée un schema de base de données
