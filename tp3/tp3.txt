@@ -1,0 +1,5 @@
+== TP2 - Creation de la structure et de nos classes ==
+
+- Créer l'arborescence du projet en respectant l'organisation MVC (Modèle Vue Controleur)
+- Créer les classes permettant d'ajouter / afficher / modifier / supprimer les données 
+des jeux, utilisateur, collection, commentaire (et autre si vous en avez modéliser d'autres)
