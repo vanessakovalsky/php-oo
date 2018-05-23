@@ -4,10 +4,20 @@ class RouterController {
 
   public function route($method, $action, $db){
     if($method == 'POST'){
-      include_once('JeuController.class.php');
-      $jeu = new Jeu($_POST);
-      $content = $jeu->AjoutJeu($jeu, $db);
-      return $content;
+      switch($action){
+        case 'AjoutJeu':
+          include_once('JeuController.class.php');
+          $jeu = new Jeu();
+          $content = $jeu->AjoutJeu($_POST);
+          return $content;
+        case 'AjoutUtilisateur':
+          include_once('UtilisateurController.class.php');
+          $utilisateur = new Utilisateur();
+          $content = $utilisateur->AjoutUtilisateur($_POST);
+          return $content;
+        default:
+          return 'Action inexistante';
+      }
     }
     else {
     switch($action){
@@ -42,9 +52,10 @@ class RouterController {
       case 'AjoutUtilisateur':
         include_once('UtilisateurController.class.php');
         $utilisateur = new Utilisateur();
+        ob_start();
         $content = $utilisateur->AjoutUtilisateur();
+        $content = ob_get_clean();
         return $content;
-        break;
       default:
         return 'Action inexistante';
     }

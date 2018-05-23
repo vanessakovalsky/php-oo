@@ -16,7 +16,6 @@ class Jeu
 
   function __construct($data = array())
   {
-    var_dump($data);
     if ($data) {
       foreach ($data as $key => $value) {
         $this->$key = $value;

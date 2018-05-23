@@ -5,19 +5,36 @@
  */
 class Utilisateur
 {
-  private $nom;
-  private $email;
+  protected $nom;
+  protected $email;
+  protected $identifant;
+  protected $prenom;
+  protected $role;
+  protected $presentation;
+  protected $avatar;
+  protected $mot_de_passe;
 
-  function __construct()
+  function __construct($data = array())
   {
-    // code...
+    if ($data) {
+      foreach ($data as $key => $value) {
+        $this->$key = $value;
+      }
+    }
   }
 
-  public function AjoutUtilisateur(){
-    // Enregistrement des données en base de données
-    return 'Mon Utilisateur a été ajouté !';
+  public function AjoutUtilisateur($values = null){
+    if(empty($values)){
+      $formulaire = include_once('./src/View/formulaire_ajout_utilisateur.html.php');
+      return $formulaire;
+    }
+    //traiter le formulaire
+    else{
+      $this->nom = $values['nom'];
+      return 'Mon Utilisateur a été ajouté !';
+    }
   }
-
+  
   public function SuppressionUtilisateur(){
 
   }
