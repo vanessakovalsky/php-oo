@@ -24,7 +24,9 @@ class RouterController {
       case 'ListeJeu':
         include_once('JeuController.class.php');
         $jeu = new Jeu();
-        $content = $jeu->ListeJeu();
+        ob_start();
+        $jeu->ListeJeu($db);
+        $content = ob_get_clean();
         return $content;
       case 'AjoutJeu':
         include_once('JeuController.class.php');

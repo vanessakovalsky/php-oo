@@ -48,8 +48,22 @@ class JeuModel
     return $objet_jeu;
   }
 
+  public function ListeJeu(PDO $db){
+    $requete = 'SELECT * FROM jeux';
+    $requete_preparee = $db->prepare($requete);
+    $result = $requete_preparee->execute();
+    $tableau_jeu = $requete_preparee->fetchAll(PDO::FETCH_ASSOC);
+    $array_object_jeu = [];
+    foreach($tableau_jeu as $ligne_jeu){
+      $objet_jeu = self::transformArrayToObject($ligne_jeu);
+      $array_object_jeu[] = $objet_jeu;
+    }
+    return $array_object_jeu;
+  }
+
   private function transformArrayToObject($tableau_jeu){
     $jeu = new Jeu();
+    $jeu->setId($tableau_jeu['id']);
     $jeu->setNomJeu($tableau_jeu['nom_jeu']);
     $jeu->setEditeur($tableau_jeu['editeur']);
     $jeu->setAnneeSortie($tableau_jeu['annee']);

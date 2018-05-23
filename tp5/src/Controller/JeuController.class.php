@@ -5,6 +5,7 @@
  */
 class Jeu
 {
+  private $id;
   private $nom_jeu;
   private $editeur;
   private $annee_sortie;
@@ -42,7 +43,7 @@ class Jeu
   public function VoirJeu(int $id, PDO $db){
     include_once('./src/Model/JeuModel.class.php');
     $repo_jeu = new JeuModel($db);
-    $reponse_voir_jeu = $repo_jeu->VoirJeu($id, $db);
+    $jeu = $repo_jeu->VoirJeu($id, $db);
     $liste = include_once('./src/View/voir_jeu.html.php');
     return $liste;
   }
@@ -55,12 +56,25 @@ class Jeu
 
   }
 
-  public function ListeJeu(){
+  public function ListeJeu(PDO $db){
+    include_once('./src/Model/JeuModel.class.php');
+    $repo_jeu = new JeuModel($db);
+    $reponse_voir_jeu = $repo_jeu->ListeJeu($db);
+    $liste = include_once('./src/View/liste_jeu.html.php');
+    return $liste;
+  }
 
+  public function getId(){
+    return $this->id;
   }
 
   public function getNomJeu(){
     return $this->nom_jeu;
+  }
+
+  public function getNomJeuLien(){
+    $lien_jeu = '<a href="index.php?actions=VoirJeu&id='.$this->getId().'">'.$this->getNomJeu().'</a>';
+    return $lien_jeu;
   }
 
   public function getEditeur(){
@@ -89,6 +103,10 @@ class Jeu
 
   public function getNombreJoueur(){
     return $this->nombre_joueur;
+  }
+
+  public function setId($id){
+    $this->id = $id;
   }
 
   public function setNomJeu($nom){
