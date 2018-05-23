@@ -1,5 +1,6 @@
-== TP3 - Lire et écrire les propriétés des classes en utilisant le modèle et le constructeur ==
+== TP5 - Lire et écrire les propriétés des classes en utilisant le modèle, la BDD et les getters / setters ==
 
+- Déclarer les getters et setters pour chaque classe 
 - Créer un modèle par classe
 - Dans chaque modèle créer des fonctions pour lire, écrire et supprimer des données
 qui vont effectuer les requêtes en BDD
@@ -9,6 +10,3 @@ config.php)
 - Dans les controlleurs, appeler les méthodes des classes de modèles. Pour cela
 il faut dans le constructeur que l'on un objet correspondant au modèle (objet de modèle
 de classe à instancier dans le routeur et à passer en paramètre au controlleur)
-- Créer les vues (templates) qui correspondent à chaque actions
-- Déclarer les getters et setters pour chaque classe 
-- Dans les controlleurs, appeler les templates créés pour chaque action
