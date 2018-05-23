@@ -1,0 +1,7 @@
+== TP 6 - Ajout interface et classe abstraite ==
+
+- Créer une interface Entité pour normaliser les noms de fonction sur les Utilisateurs,
+les jeux, les commentaires et les collections
+-Implanté l'interface sur les modèles des Utilisateurs, Jeux, Commentaires et Collection
+- Rendre la classe Utilisateur abstraite et ajouter une fonction abstraite has_access($actions)
+- Mettre à jour en conséquence les modèles et controlleurs
