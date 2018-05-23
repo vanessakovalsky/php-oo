@@ -5,14 +5,8 @@
  */
 class Utilisateur
 {
-  protected $nom;
-  protected $email;
-  protected $identifant;
-  protected $prenom;
-  protected $role;
-  protected $presentation;
-  protected $avatar;
-  protected $mot_de_passe;
+  private $nom;
+  private $email;
 
   function __construct()
   {

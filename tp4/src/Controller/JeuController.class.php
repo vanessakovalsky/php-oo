@@ -16,7 +16,6 @@ class Jeu
 
   function __construct($data = array())
   {
-    var_dump($data);
     if ($data) {
       foreach ($data as $key => $value) {
         $this->$key = $value;
@@ -24,32 +23,31 @@ class Jeu
     }
   }
 
-  public function AjoutJeu($values = null){
+  public function AjoutJeu(Jeu $jeu, PDO $db){
     // Envoyer un formulaire
-    if(empty($values)){
+    if(empty($jeu)){
       $formulaire = include_once('./src/View/formulaire_ajout_jeu.html.php');
       return $formulaire;
     }
     //traiter le formulaire
     else{
-      $this->nom_jeu = $values['nom_jeu'];
+      //On appel l'insertion en base
+      include_once('./src/Model/JeuModel.class.php');
+      $repo_jeu = new JeuModel($db);
+      $repo_jeu->EnregistrerJeu($jeu, $db);
       return 'Mon jeu a été ajouté !';
     }
   }
 
-  public function SuppressionJeu(Jeu $jeu){
+  public function SuppressionJeu(){
 
   }
 
-  public function ModificationJeu(Jeu $jeu){
+  public function ModificationJeu(){
 
   }
 
-  public function ListeJeu(){
+public function ListeJeu(){
 
-  }
-
-  public function VoirJeu(Jeu $jeu){
-
-  }
+}
 }
