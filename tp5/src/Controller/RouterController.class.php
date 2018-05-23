@@ -7,13 +7,13 @@ class RouterController {
       switch($action){
         case 'AjoutJeu':
           include_once('JeuController.class.php');
-          $jeu = new Jeu();
-          $content = $jeu->AjoutJeu($_POST);
+          $jeu = new Jeu($_POST);
+          $content = $jeu->AjoutJeu($jeu, $db);
           return $content;
         case 'AjoutUtilisateur':
           include_once('UtilisateurController.class.php');
-          $utilisateur = new Utilisateur();
-          $content = $utilisateur->AjoutUtilisateur($_POST);
+          $utilisateur = new Utilisateur($_POST);
+          $content = $utilisateur->AjoutUtilisateur($utilisateur, $db);
           return $content;
         default:
           return 'Action inexistante';

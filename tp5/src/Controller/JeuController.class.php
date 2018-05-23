@@ -79,8 +79,48 @@ class Jeu
     return $this->descriptif;
   }
 
+  public function getCategorie(){
+    return $this->categorie;
+  }
+
+  public function getDuree(){
+    return $this->duree;
+  }
+
+  public function getNombreJoueur(){
+    return $this->nombre_joueur;
+  }
+
   public function setNomJeu($nom){
     $this->nom_jeu = $nom;
+  }
+
+  public function setEditeur($editeur){
+    $this->editeur = $editeur;
+  }
+
+  public function setAnneeSortie($annee_sortie){
+    $this->annee_sortie = $annee_sortie;
+  }
+
+  public function setPhotos($photos){
+    $this->photos = $photos;
+  }
+
+  public function setDescriptif($descriptif){
+    $this->descriptif = $descriptif;
+  }
+
+  public function setCategorie($categorie){
+    $this->categorie = $categorie;
+  }
+
+  public function setDuree($duree){
+    $this->duree = $duree;
+  }
+
+  public function setNombreJoueur($nombre_joueur){
+    $this->nombre_joueur = $nombre_joueur;
   }
 
 }
