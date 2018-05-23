@@ -33,7 +33,13 @@ class RouterController {
         $jeu->AjoutJeu($jeu, $db);
         $content = ob_get_clean();
         return $content;
-        break;
+      case 'VoirJeu':
+        include_once('JeuController.class.php');
+        $jeu = new Jeu();
+        ob_start();
+        $jeu->VoirJeu($_GET['id'], $db);
+        $content = ob_get_clean();
+        return $content;
       case 'ModificationJeu':
         include_once('JeuController.class.php');
         $jeu = new Jeu();
@@ -48,7 +54,6 @@ class RouterController {
         $jeu->SuppressionJeu();
         $content = ob_get_clean();
         return $content;
-        break;
       case 'AjoutUtilisateur':
         include_once('UtilisateurController.class.php');
         $utilisateur = new Utilisateur();

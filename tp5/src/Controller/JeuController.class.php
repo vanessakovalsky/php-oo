@@ -39,6 +39,14 @@ class Jeu
     }
   }
 
+  public function VoirJeu(int $id, PDO $db){
+    include_once('./src/Model/JeuModel.class.php');
+    $repo_jeu = new JeuModel($db);
+    $reponse_voir_jeu = $repo_jeu->VoirJeu($id, $db);
+    $liste = include_once('./src/View/voir_jeu.html.php');
+    return $liste;
+  }
+
   public function SuppressionJeu(){
 
   }
@@ -70,5 +78,9 @@ class Jeu
   public function getDescriptif(){
     return $this->descriptif;
   }
-  
+
+  public function setNomJeu($nom){
+    $this->nom_jeu = $nom;
+  }
+
 }
