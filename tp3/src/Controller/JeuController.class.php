@@ -7,6 +7,12 @@ class Jeu
 {
   private $nom_jeu;
   private $editeur;
+  private $annee_sortie;
+  private $photos;
+  private $descriptif;
+  private $categorie;
+  private $duree;
+  private $nombre_joueur;
 
   function __construct()
   {
@@ -35,6 +41,6 @@ class Jeu
   }
 
 public function ListeJeu(){
-  
+
 }
 }
