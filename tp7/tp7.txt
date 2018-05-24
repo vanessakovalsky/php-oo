@@ -1,0 +1,10 @@
+== TP 7 - Connexion avec une méthode statique ==
+
+- Dans la classe AdminUser créer une fonction statique de connexion
+- Dans la classe UtilisateurModel créer une fonction pour récupérer les informations
+sur l'utilisateur à partir du login fourni
+- Créer le formulaire de connexion avec son template
+- Dans le routeur, ajouter une fonction de connexion 
+- Une fois l'utilisateur connecté, ses informations doivent être stockées dans 
+la session, afin de permettre de vérifier avec une fonction has_access en fonction
+de son rôle s'il peut ou non accéder aux différentes actions du routeur 
