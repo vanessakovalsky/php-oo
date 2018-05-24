@@ -7,7 +7,7 @@ class Autoloader {
   }
 
   static function autoload($class){
-    require('src\\'.$class.'.class.php');
+    require(__DIR__.'/'.str_replace('\\', '/', $class).'.class.php');
   }
 
 }

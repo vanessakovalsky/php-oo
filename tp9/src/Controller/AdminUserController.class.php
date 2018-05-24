@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-include_once('./src/Controller/UtilisateurController.class.php');
+use Controller\UtilisateurController as Utilisateur;
 
 /**
  *
