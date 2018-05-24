@@ -1,0 +1,6 @@
+== TP 8 - Gestion des Exceptions ==
+
+- Créer une classe d'Exception qui étend la classe Exception
+- Ajouter une méthode qui enregistre les exceptions dans un fichier de log
+- Utiliser la méthode crée pour enregistrer les exceptions lors des requêtes
+en BDD 
