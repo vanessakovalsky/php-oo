@@ -1,0 +1,8 @@
+== TP 9 - Namespace et autoloading ==
+
+- Ajouter des namespaces correspondants aux dossier à chacune des classes
+- Déclarer une classe Autoloader qui implémente la méthode spl_autoload_register()
+- Importer la classe autoloader dans le fichier index.php et appeler la fonction register
+- Supprimer toutes les includes ou require vers des fichiers de classes 
+- Ajouter les use au début des classes pour permettre l'utilisation de classe depuis
+leurs namespaces
