@@ -4,7 +4,7 @@ use Exception\KingoludoException;
 //On initialise la connexion à la base de données
 include_once('config.php');
 
-require('src/Autoloader.class.php');
+require('src\Autoloader.class.php');
 Autoloader::register();
 
 try
