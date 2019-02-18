@@ -1,0 +1,24 @@
+KingoLudo
+Organisation du code en classes
+
+-- Utilisateur : 
+----- role, [permissions], is_connected
+----- Se connecter, se deconnecter, modifier son profil, a la permisssion 
+-- Admin (herite Membre)
+---- 
+---- Modifier utilisateur, ajouter un utilisateur, supprimer un utilisateur 
+-- Membre (herite Utilisateur)
+---- Login, nom, prenom, [collections], [favoris], presentation, avatar, mail, mot de passe, localisation, 
+---- 
+-- Visiteur (hérite Utilisateur)
+---- 
+---- 
+-- Jeu : 
+---- Nom, editeur, annne, photos 
+---- Ajouter un jeu, modifier un jeu, supprimer un jeu 
+-- Collection : 
+---- [Jeux]
+---- Ajouter un jeu à ma collection, supprimer un jeu, prêté un jeu 
+-- Router 
+---- 
+---- Rediriger / charger la bonne classe et la bonne méthode 
