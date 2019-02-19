@@ -1,12 +1,14 @@
 <?php
 
+use GuzzleHttp\Client;
+
 /**
  *
  */
 class JeuModel
 {
 
-private $nom_jeu;
+private $name;
 private $editeur;
 private $annee_sortie;
 private $photos;
@@ -29,9 +31,9 @@ function __construct($data = array())
      *
      * @return mixed
      */
-    public function getNomJeu()
+    public function getName()
     {
-        return $this->nom_jeu;
+        return $this->name;
     }
 
     /**
@@ -41,9 +43,9 @@ function __construct($data = array())
      *
      * @return self
      */
-    public function setNomJeu($nom_jeu)
+    public function setName($nom_jeu)
     {
-        $this->nom_jeu = $nom_jeu;
+        $this->name = $nom_jeu;
 
         return $this;
     }
@@ -214,6 +216,20 @@ function __construct($data = array())
         $this->nombre_joueur = $nombre_joueur;
 
         return $this;
+    }
+
+    public function voirJeu($id){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/0');
+      $jeu_data = json_decode($reponse->getBody()->getContents(), true);
+      $jeu = new JeuModel($jeu_data);
+      return $jeu;
     }
 
 }

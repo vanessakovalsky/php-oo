@@ -33,7 +33,11 @@ class JeuController
 
   }
 
-  public function VoirJeu(Jeu $jeu){
-
+  public function VoirJeu($jid){
+    include_once('./src/Model/JeuModel.class.php');
+    $jeuModel = new JeuModel();
+    $jeu = $jeuModel->VoirJeu($jid);
+    $content = include_once('./src/View/voir_jeu.html.php');
+    return $content;
   }
 }
