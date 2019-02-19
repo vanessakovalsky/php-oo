@@ -7,7 +7,7 @@ class RouterController {
       switch($action){
         case 'AjoutJeu':
           include_once('JeuController.class.php');
-          $jeu = new Jeu();
+          $jeu = new JeuController();
           $content = $jeu->AjoutJeu($_POST);
           return $content;
         case 'AjoutUtilisateur':
@@ -23,13 +23,13 @@ class RouterController {
     switch($action){
       case 'ListeJeu':
         include_once('JeuController.class.php');
-        $jeu = new Jeu();
+        $jeu = new JeuController();
         $content = $jeu->ListeJeu();
         return $content;
         break;
       case 'AjoutJeu':
         include_once('JeuController.class.php');
-        $jeu = new Jeu();
+        $jeu = new JeuController();
         ob_start();
         $jeu->AjoutJeu();
         $content = ob_get_clean();

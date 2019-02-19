@@ -3,25 +3,8 @@
 /**
  *
  */
-class Jeu
+class JeuController
 {
-  private $nom_jeu;
-  private $editeur;
-  private $annee_sortie;
-  private $photos;
-  private $descriptif;
-  private $categorie;
-  private $duree;
-  private $nombre_joueur;
-
-  function __construct($data = array())
-  {
-    if ($data) {
-      foreach ($data as $key => $value) {
-        $this->$key = $value;
-      }
-    }
-  }
 
   public function AjoutJeu($values = null){
     // Envoyer un formulaire
@@ -31,8 +14,10 @@ class Jeu
     }
     //traiter le formulaire
     else{
-      $this->nom_jeu = $values['nom_jeu'];
-      return 'Mon jeu a été ajouté !';
+      include_once('./src/Model/JeuModel.class.php');
+      $jeuModel = new JeuModel();
+      $jeuModel->setNomJeu($values['nom_jeu']);
+      return 'Mon jeu a été ajouté !'.$jeuModel->getNomJeu();
     }
   }
 
