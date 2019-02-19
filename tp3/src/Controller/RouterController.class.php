@@ -12,7 +12,7 @@ class RouterController {
           return $content;
         case 'AjoutUtilisateur':
           include_once('UtilisateurController.class.php');
-          $utilisateur = new Utilisateur();
+          $utilisateur = new UtilisateurController();
           $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
         default:
@@ -37,7 +37,7 @@ class RouterController {
         break;
       case 'AjoutUtilisateur':
         include_once('UtilisateurController.class.php');
-        $utilisateur = new Utilisateur();
+        $utilisateur = new UtilisateurController();
         ob_start();
         $content = $utilisateur->AjoutUtilisateur();
         $content = ob_get_clean();
