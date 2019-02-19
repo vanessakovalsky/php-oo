@@ -28,6 +28,10 @@ class JeuController
     }
   }
 
+  public function testJeu(){
+    return 'bienvenue sur ma page de test';
+  }
+
   public function AjoutJeu(JeuController$jeu, PDO $db){
     // Envoyer un formulaire
     if(empty($jeu->nom_jeu)){
@@ -141,5 +145,6 @@ class JeuController
   public function setNombreJoueur($nombre_joueur){
     $this->nombre_joueur = $nombre_joueur;
   }
+
 
 }

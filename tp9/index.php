@@ -1,7 +1,7 @@
 <?php
 use Exception\KingoludoException;
 
-//On initialise la connexion à la base de données
+On initialise la connexion à la base de données
 include_once('config.php');
 
 require('src\Autoloader.class.php');
@@ -20,3 +20,8 @@ $router = new Controller\RouterController();
 $content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions'], $db);
 
 include_once('src/View/template.php');
+
+// require_once('src/Controller/JeuController.class.php');
+//
+// $jeu = new JeuController();
+// echo $jeu->testJeu();
