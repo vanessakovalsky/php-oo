@@ -11,14 +11,14 @@ class RouterController {
           $content = $jeu->AjoutJeu($_POST);
           return $content;
         case 'AjoutUtilisateur':
-          include_once('UtilisateurController.class.php');
-          $utilisateur = new UtilisateurController();
+          include_once('AdminUserController.class.php');
+          $utilisateur = new AdminUser();
           $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
         case 'ModificationUtilisateur':
-            include_once('UtilisateurController.class.php');
+            include_once('AdminUserController.class.php');
             $user_id = $_GET['uid'];
-            $utilisateur = new UtilisateurController();
+            $utilisateur = new AdminUser();
             $content = $utilisateur->ModificationUtilisateur($user_id, $_POST);
             return $content;
         default:
@@ -42,25 +42,25 @@ class RouterController {
         return $content;
         break;
       case 'AjoutUtilisateur':
-        include_once('UtilisateurController.class.php');
-        $utilisateur = new UtilisateurController();
+        include_once('AdminUserController.class.php');
+        $utilisateur = new AdminUser();
         ob_start();
         $content = $utilisateur->AjoutUtilisateur();
         $content = ob_get_clean();
         return $content;
         break;
       case 'ModificationUtilisateur':
-          include_once('UtilisateurController.class.php');
-          $utilisateur = new UtilisateurController();
+          include_once('AdminUserController.class.php');
+          $utilisateur = new AdminUser();
           $user_id = $_GET['uid'];
           $content = $utilisateur->ModificationUtilisateur($user_id);
           return $content;
           break;
       case 'SuppressionUtilisateur':
-        include_once('UtilisateurController.class.php');
+        include_once('AdminUserController.class.php');
         break;
       case 'VoirUtilisateur':
-          include_once('UtilisateurController.class.php');
+          include_once('AdminUserController.class.php');
           break;
       default:
         return 'Action inexistante';

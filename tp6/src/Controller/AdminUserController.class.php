@@ -1,12 +1,17 @@
 <?php
 
-include_once('./src/Controller/UtilisateurController.class.php');
-
 /**
  *
  */
-class AdminUser extends Utilisateur
+ include_once('UtilisateurController.class.php');
+
+class AdminUser extends UtilisateurController
 {
+
+  function __construct()
+  {
+    // code...
+  }
 
   /*
    * En tant qu'admin accés autorisé à tous les actions

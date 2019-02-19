@@ -3,7 +3,9 @@
 /**
  *
  */
-class AdminUser extends Utilisateur
+ include_once('UtilisateurController.class.php');
+
+class AdminUser extends UtilisateurController
 {
 
   function __construct()
