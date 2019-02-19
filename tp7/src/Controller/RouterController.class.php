@@ -2,75 +2,69 @@
 
 class RouterController {
 
-  public function route($method, $action, $db){
+  public function route($method, $action){
     if($method == 'POST'){
       switch($action){
         case 'AjoutJeu':
           include_once('JeuController.class.php');
-          $jeu = new Jeu($_POST);
-          $content = $jeu->AjoutJeu($jeu, $db);
+          $jeu = new JeuController();
+          $content = $jeu->AjoutJeu($_POST);
           return $content;
         case 'AjoutUtilisateur':
-          include_once('MembreUserController.class.php');
-          $utilisateur = new MembreUser($_POST);
-          $content = $utilisateur->AjoutUtilisateur($utilisateur, $db);
+          include_once('UtilisateurController.class.php');
+          $utilisateur = new UtilisateurController();
+          $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
+        case 'ModificationUtilisateur':
+            include_once('UtilisateurController.class.php');
+            $user_id = $_GET['uid'];
+            $utilisateur = new UtilisateurController();
+            $content = $utilisateur->ModificationUtilisateur($user_id, $_POST);
+            return $content;
         default:
           return 'Action inexistante';
       }
     }
     else {
     switch($action){
-      case 'Connexion':
-        include_once('AdminUserController.class.php');
-        $login = AdminUser::login_check('patate','password');
-        return $login;
       case 'ListeJeu':
         include_once('JeuController.class.php');
-        $jeu = new Jeu();
-        ob_start();
-        $jeu->ListeJeu($db);
-        $content = ob_get_clean();
+        $jeu = new JeuController();
+        $content = $jeu->ListeJeu();
         return $content;
+        break;
       case 'AjoutJeu':
         include_once('JeuController.class.php');
-        $jeu = new Jeu();
+        $jeu = new JeuController();
         ob_start();
-        $jeu->AjoutJeu($jeu, $db);
+        $jeu->AjoutJeu();
         $content = ob_get_clean();
         return $content;
-      case 'VoirJeu':
-        include_once('JeuController.class.php');
-        $jeu = new Jeu();
-        ob_start();
-        $jeu->VoirJeu($_GET['id'], $db);
-        $content = ob_get_clean();
-        return $content;
-      case 'ModificationJeu':
-        include_once('JeuController.class.php');
-        $jeu = new Jeu();
-        ob_start();
-        $jeu->ModificationJeu();
-        $content = ob_get_clean();
-        return $content;
-      case 'SuppresionJeu':
-        include_once('JeuController.class.php');
-        $jeu = new Jeu();
-        ob_start();
-        $jeu->SuppressionJeu();
-        $content = ob_get_clean();
-        return $content;
+        break;
       case 'AjoutUtilisateur':
-        include_once('AdminUserController.class.php');
-        $utilisateur = new AdminUser();
+        include_once('UtilisateurController.class.php');
+        $utilisateur = new UtilisateurController();
         ob_start();
         $content = $utilisateur->AjoutUtilisateur();
         $content = ob_get_clean();
         return $content;
+        break;
+      case 'ModificationUtilisateur':
+          include_once('UtilisateurController.class.php');
+          $utilisateur = new UtilisateurController();
+          $user_id = $_GET['uid'];
+          $content = $utilisateur->ModificationUtilisateur($user_id);
+          return $content;
+          break;
+      case 'SuppressionUtilisateur':
+        include_once('UtilisateurController.class.php');
+        break;
+      case 'VoirUtilisateur':
+          include_once('UtilisateurController.class.php');
+          break;
       default:
         return 'Action inexistante';
+      }
     }
   }
-}
-
 }

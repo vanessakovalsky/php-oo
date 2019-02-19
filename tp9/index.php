@@ -1,27 +1,18 @@
 <?php
-use Exception\KingoludoException;
 
-// On initialise la connexion à la base de données
+//On initialise la connexion à la base de données
 include_once('config.php');
+// try
+// {
+//     $db = new PDO('mysql:host='.$db_host.';dbname='.$db_db.';charset=utf8', $db_user, $db_pass);
+// }
+// catch(Exception $e)
+// {
+//     die('Erreur : '.$e->getMessage());
+// }
 
-require('src\Autoloader.class.php');
-Autoloader::register();
-
-try
-{
-    $db = new PDO('mysql:host='.$db_host.';dbname='.$db_db.';charset=utf8', $db_user , $db_pass);
-}
-catch(KingoludoException $e)
-{
-    $e->showMessage('Erreur de connexion à la DB');
-}
-
-$router = new Controller\RouterController();
-$content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions'], $db);
+include_once('src/Controller/RouterController.class.php');
+$router = new RouterController();
+$content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions']);
 
 include_once('src/View/template.php');
-
-// require_once('src/Controller/JeuController.class.php');
-//
-// $jeu = new JeuController();
-// echo $jeu->testJeu();

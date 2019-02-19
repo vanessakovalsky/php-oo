@@ -15,6 +15,12 @@ class RouterController {
           $utilisateur = new UtilisateurController();
           $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
+        case 'ModificationUtilisateur':
+            include_once('UtilisateurController.class.php');
+            $user_id = $_GET['uid'];
+            $utilisateur = new UtilisateurController();
+            $content = $utilisateur->ModificationUtilisateur($user_id, $_POST);
+            return $content;
         default:
           return 'Action inexistante';
       }
@@ -43,10 +49,22 @@ class RouterController {
         $content = ob_get_clean();
         return $content;
         break;
+      case 'ModificationUtilisateur':
+          include_once('UtilisateurController.class.php');
+          $utilisateur = new UtilisateurController();
+          $user_id = $_GET['uid'];
+          $content = $utilisateur->ModificationUtilisateur($user_id);
+          return $content;
+          break;
+      case 'SuppressionUtilisateur':
+        include_once('UtilisateurController.class.php');
+        break;
+      case 'VoirUtilisateur':
+          include_once('UtilisateurController.class.php');
+          break;
       default:
         return 'Action inexistante';
+      }
     }
   }
-}
-
 }

@@ -24,8 +24,8 @@ class UtilisateurController
 
   }
 
-  public function ModificationUtilisateur(){
-
+  public function ModificationUtilisateur($uid, $values = NULL){
+    return 'UID de l\'utilisateur à modifier'. $uid;
   }
 
 }

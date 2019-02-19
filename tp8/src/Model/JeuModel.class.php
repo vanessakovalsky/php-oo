@@ -1,92 +1,219 @@
 <?php
 
-include_once('./src/Interface/EntiteInterface.php');
-
 /**
  *
  */
-class JeuModel implements Entite
+class JeuModel
 {
 
-  function __construct(PDO $db)
-  {
-    if(empty($db)){
-      return FALSE;
+private $nom_jeu;
+private $editeur;
+private $annee_sortie;
+private $photos;
+private $descriptif;
+private $categorie;
+private $duree;
+private $nombre_joueur;
+
+function __construct($data = array())
+{
+  if ($data) {
+    foreach ($data as $key => $value) {
+      $this->$key = $value;
     }
   }
+}
 
-  public function ajouter($jeu, PDO $db){
-    $nom_jeu =  $jeu->getNomJeu();
-    $editeur = $jeu->getEditeur();
-    $annee_sortie = $jeu->getAnneeSortie();
-    $descriptif = $jeu->getDescriptif();
-    $categorie = $jeu->getCategorie();
-    $photos = $jeu->getPhotos();
-    $duree = $jeu->getDuree();
-    $nombre_joueur = $jeu->getNombreJoueur();
-    $requete = "INSERT INTO `jeux` (`nom_jeu`, `editeur`, `annee`, `photo`,`descriptif`, `categorie`, `duree`, `nombre_joueur`)
-    VALUES (:nom_jeu, :editeur, :annee, :photo, :descriptif, :categorie, :duree, :nombre_joueur );";
-    $requete_preparee = $db->prepare($requete);
-    try{
-      $result = $requete_preparee->execute([
-        'nom_jeu' => $nom_jeu,
-        'editeur' => $editeur,
-        'annee' => $annee_sortie,
-        'photo' => $photos,
-        'descriptif' => $descriptif,
-        'categorie' => $categorie,
-        'duree' => $duree,
-        'nombre_joueur' => $nombre_joueur
-      ]);
+    /**
+     * Get the value of Nom Jeu
+     *
+     * @return mixed
+     */
+    public function getNomJeu()
+    {
+        return $this->nom_jeu;
     }
-    catch (Exception $e){
-      throw new Exception ('Insertion du jeu impossible en BDD');
+
+    /**
+     * Set the value of Nom Jeu
+     *
+     * @param mixed nom_jeu
+     *
+     * @return self
+     */
+    public function setNomJeu($nom_jeu)
+    {
+        $this->nom_jeu = $nom_jeu;
+
+        return $this;
     }
-    return $result;
-  }
 
-  public function voir($id, PDO $db){
-    $requete = 'SELECT * FROM jeux WHERE id = :id';
-    $requete_preparee = $db->prepare($requete);
-    $result = $requete_preparee->execute(['id' => $id]);
-    $tableau_jeu = $requete_preparee->fetch(PDO::FETCH_ASSOC);
-    $objet_jeu = self::transformArrayToObject($tableau_jeu);
-    return $objet_jeu;
-  }
-
-  public function lister(PDO $db){
-    $requete = 'SELECT * FROM jeux';
-    $requete_preparee = $db->prepare($requete);
-    $result = $requete_preparee->execute();
-    $tableau_jeu = $requete_preparee->fetchAll(PDO::FETCH_ASSOC);
-    $array_object_jeu = [];
-    foreach($tableau_jeu as $ligne_jeu){
-      $objet_jeu = self::transformArrayToObject($ligne_jeu);
-      $array_object_jeu[] = $objet_jeu;
+    /**
+     * Get the value of Editeur
+     *
+     * @return mixed
+     */
+    public function getEditeur()
+    {
+        return $this->editeur;
     }
-    return $array_object_jeu;
-  }
 
-  public function modifier(){
+    /**
+     * Set the value of Editeur
+     *
+     * @param mixed editeur
+     *
+     * @return self
+     */
+    public function setEditeur($editeur)
+    {
+        $this->editeur = $editeur;
 
-  }
+        return $this;
+    }
 
-  public function supprimer(){
+    /**
+     * Get the value of Annee Sortie
+     *
+     * @return mixed
+     */
+    public function getAnneeSortie()
+    {
+        return $this->annee_sortie;
+    }
 
-  }
+    /**
+     * Set the value of Annee Sortie
+     *
+     * @param mixed annee_sortie
+     *
+     * @return self
+     */
+    public function setAnneeSortie($annee_sortie)
+    {
+        $this->annee_sortie = $annee_sortie;
 
-  private function transformArrayToObject($tableau_jeu){
-    $jeu = new Jeu();
-    $jeu->setId($tableau_jeu['id']);
-    $jeu->setNomJeu($tableau_jeu['nom_jeu']);
-    $jeu->setEditeur($tableau_jeu['editeur']);
-    $jeu->setAnneeSortie($tableau_jeu['annee']);
-    $jeu->setPhotos($tableau_jeu['photo']);
-    $jeu->setDescriptif($tableau_jeu['descriptif']);
-    $jeu->setCategorie($tableau_jeu['categorie']);
-    $jeu->setDuree($tableau_jeu['duree']);
-    $jeu->setNombreJoueur($tableau_jeu['nombre_joueur']);
+        return $this;
+    }
 
-    return $jeu;
-  }
+    /**
+     * Get the value of Photos
+     *
+     * @return mixed
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * Set the value of Photos
+     *
+     * @param mixed photos
+     *
+     * @return self
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Descriptif
+     *
+     * @return mixed
+     */
+    public function getDescriptif()
+    {
+        return $this->descriptif;
+    }
+
+    /**
+     * Set the value of Descriptif
+     *
+     * @param mixed descriptif
+     *
+     * @return self
+     */
+    public function setDescriptif($descriptif)
+    {
+        $this->descriptif = $descriptif;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Categorie
+     *
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set the value of Categorie
+     *
+     * @param mixed categorie
+     *
+     * @return self
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Duree
+     *
+     * @return mixed
+     */
+    public function getDuree()
+    {
+        return $this->duree;
+    }
+
+    /**
+     * Set the value of Duree
+     *
+     * @param mixed duree
+     *
+     * @return self
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Nombre Joueur
+     *
+     * @return mixed
+     */
+    public function getNombreJoueur()
+    {
+        return $this->nombre_joueur;
+    }
+
+    /**
+     * Set the value of Nombre Joueur
+     *
+     * @param mixed nombre_joueur
+     *
+     * @return self
+     */
+    public function setNombreJoueur($nombre_joueur)
+    {
+        $this->nombre_joueur = $nombre_joueur;
+
+        return $this;
+    }
+
 }
