@@ -9,7 +9,7 @@ class JeuModel
 {
 
 private $name;
-private $editeur;
+private $editor;
 private $annee_sortie;
 private $photos;
 private $descriptif;
@@ -55,9 +55,9 @@ function __construct($data = array())
      *
      * @return mixed
      */
-    public function getEditeur()
+    public function getEditor()
     {
-        return $this->editeur;
+        return $this->editor;
     }
 
     /**
@@ -67,9 +67,9 @@ function __construct($data = array())
      *
      * @return self
      */
-    public function setEditeur($editeur)
+    public function setEditor($editeur)
     {
-        $this->editeur = $editeur;
+        $this->editor = $editeur;
 
         return $this;
     }
@@ -226,10 +226,27 @@ function __construct($data = array())
           // You can set any number of default request options.
           'timeout'  => 2.0,
       ]);
-      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/0');
+      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/'.$id);
       $jeu_data = json_decode($reponse->getBody()->getContents(), true);
       $jeu = new JeuModel($jeu_data);
       return $jeu;
+    }
+
+    public function listeJeu(){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/findByStatus');
+      $jeu_data = json_decode($reponse->getBody()->getContents(), true);
+      $table_jeu = [];
+      foreach($jeu_data as $jeu_single){
+        $table_jeu[] =  new JeuModel($jeu_single);
+      }
+      return $table_jeu;
     }
 
 }

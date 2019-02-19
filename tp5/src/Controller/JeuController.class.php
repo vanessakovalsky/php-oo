@@ -30,7 +30,11 @@ class JeuController
   }
 
   public function ListeJeu(){
-
+    include_once('./src/Model/JeuModel.class.php');
+    $jeuModel = new JeuModel();
+    $reponse_voir_jeu = $jeuModel->ListeJeu();
+    $content = include_once('./src/View/liste_jeu.html.php');
+    return $content;
   }
 
   public function VoirJeu($jid){
