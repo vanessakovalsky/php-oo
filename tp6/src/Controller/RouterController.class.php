@@ -30,7 +30,9 @@ class RouterController {
       case 'ListeJeu':
         include_once('JeuController.class.php');
         $jeu = new JeuController();
+        ob_start();
         $content = $jeu->ListeJeu();
+        $content = ob_get_clean();
         return $content;
         break;
       case 'AjoutJeu':
@@ -62,6 +64,13 @@ class RouterController {
       case 'VoirUtilisateur':
           include_once('AdminUserController.class.php');
           break;
+       case 'VoirJeu':
+          include_once('JeuController.class.php');
+          $jeu = new JeuController();
+          ob_start();
+          $content = $jeu->voirJeu(1);
+          $content = ob_get_clean();
+          return $content;
       default:
         return 'Action inexistante';
       }
