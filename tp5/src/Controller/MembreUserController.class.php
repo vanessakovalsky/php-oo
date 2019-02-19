@@ -3,7 +3,9 @@
 /**
  *
  */
-class MembreUser extends Utilisateur
+include_once('UtilisateurController.class.php');
+
+class MembreUser extends UtilisateurController
 {
 
   function __construct()

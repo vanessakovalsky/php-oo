@@ -1,13 +1,13 @@
 <?php
 
-namespace Controller;
+//namespace Controller;
 
-use Controller\UtilisateurController as Utilisateur;
-
+//use Controller\UtilisateurController as Utilisateur;
+include_once('UtilisateurController.class.php');
 /**
  *
  */
-class AdminUserController extends Utilisateur
+class AdminUserController extends UtilisateurController
 {
 
   /*

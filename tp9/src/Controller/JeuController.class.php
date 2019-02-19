@@ -17,6 +17,7 @@ class JeuController
       include_once('./src/Model/JeuModel.class.php');
       $jeuModel = new JeuModel();
       $jeuModel->setNomJeu($values['nom_jeu']);
+      $jeuModel->ajouter();
       return 'Mon jeu a été ajouté !'.$jeuModel->getNomJeu();
     }
   }

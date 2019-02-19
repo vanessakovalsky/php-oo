@@ -1,9 +1,11 @@
 <?php
+//namespace Model;
 
+//use Interface\EntiteInterface;
 /**
  *
  */
-class JeuModel
+class JeuModel //implements EntiteInterface
 {
 
 private $nom_jeu;
@@ -215,5 +217,21 @@ function __construct($data = array())
 
         return $this;
     }
+
+    public function ajouter(stdClass $objet, PDO $db){
+
+    }
+
+    public function voir($id, PDO $db){
+
+    }
+
+    public function modifier(){
+
+    }
+
+    public function supprimer();
+
+    public function lister(PDO $db);
 
 }

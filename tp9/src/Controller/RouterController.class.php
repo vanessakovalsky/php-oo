@@ -11,8 +11,8 @@ class RouterController {
           $content = $jeu->AjoutJeu($_POST);
           return $content;
         case 'AjoutUtilisateur':
-          include_once('UtilisateurController.class.php');
-          $utilisateur = new UtilisateurController();
+          include_once('AdminUserController.class.php');
+          $utilisateur = new AdminController();
           $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
         case 'ModificationUtilisateur':
