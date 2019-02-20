@@ -2,10 +2,12 @@
 
 use GuzzleHttp\Client;
 
+include_once('./src/Interface/EntiteInterface.php');
+
 /**
  *
  */
-class JeuModel
+class JeuModel implements EntiteInterface
 {
 
 private $name;
@@ -218,7 +220,7 @@ function __construct($data = array())
         return $this;
     }
 
-    public function voirJeu($id){
+    public function voir($id){
       include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
@@ -232,7 +234,30 @@ function __construct($data = array())
       return $jeu;
     }
 
-    public function listeJeu(){
+    public function voirJeuSQL($id, PDO $db){
+     $requete = 'SELECT * FROM jeux WHERE id = :id';
+     $requete_preparee = $db->prepare($requete);
+     $result = $requete_preparee->execute(['id' => $id]);
+     $tableau_jeu = $requete_preparee->fetch(PDO::FETCH_ASSOC);
+     $objet_jeu = self::transformArrayToObject($tableau_jeu);
+     return $objet_jeu;
+   }
+
+   private function transformArrayToObject($tableau_jeu){
+      $jeu = new JeuModel();
+      $jeu->setId($tableau_jeu['id']);
+      $jeu->setName($tableau_jeu['nom_jeu']);
+      $jeu->setEditor($tableau_jeu['editeur']);
+      $jeu->setAnneeSortie($tableau_jeu['annee']);
+      $jeu->setPhotos($tableau_jeu['photo']);
+      $jeu->setDescriptif($tableau_jeu['descriptif']);
+      $jeu->setCategorie($tableau_jeu['categorie']);
+      $jeu->setDuree($tableau_jeu['duree']);
+      $jeu->setNombreJoueur($tableau_jeu['nombre_joueur']);
+      return $jeu;
+    }
+
+    public function lister(){
       include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
@@ -248,5 +273,15 @@ function __construct($data = array())
       }
       return $table_jeu;
     }
+
+    public function ajouter(stdClass $objet){
+    }
+
+    public function modifier(){
+    }
+
+    public function supprimer(){
+    }
+
 
 }

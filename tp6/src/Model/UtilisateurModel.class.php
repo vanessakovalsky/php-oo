@@ -1,9 +1,11 @@
 <?php
 
+include_once('./src/Interface/EntiteInterface.php');
+
 /**
  *
  */
-class UtilisateurModel
+class UtilisateurModel implements EntiteInterface
 {
 
   protected $nom;
@@ -216,5 +218,15 @@ class UtilisateurModel
 
         return $this;
     }
+
+    public function ajouter(stdClass $objet);
+
+    public function voir($id);
+
+    public function modifier();
+
+    public function supprimer();
+
+    public function lister();
 
 }

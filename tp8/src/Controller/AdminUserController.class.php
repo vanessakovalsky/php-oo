@@ -1,10 +1,7 @@
 <?php
 
 include_once('./src/Controller/UtilisateurController.class.php');
-
-/**
- *
- */
+  
 class AdminUser extends Utilisateur
 {
 

@@ -3,7 +3,7 @@
 /**
  *
  */
-class UtilisateurController
+abstract class UtilisateurController
 {
 
   public function AjoutUtilisateur($values = null){
