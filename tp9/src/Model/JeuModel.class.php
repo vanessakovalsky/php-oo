@@ -1,15 +1,17 @@
 <?php
-//namespace Model;
 
-//use Interface\EntiteInterface;
+use GuzzleHttp\Client;
+
+include_once('./src/Interface/EntiteInterface.php');
+
 /**
  *
  */
-class JeuModel //implements EntiteInterface
+class JeuModel implements EntiteInterface
 {
 
-private $nom_jeu;
-private $editeur;
+private $name;
+private $editor;
 private $annee_sortie;
 private $photos;
 private $descriptif;
@@ -31,9 +33,9 @@ function __construct($data = array())
      *
      * @return mixed
      */
-    public function getNomJeu()
+    public function getName()
     {
-        return $this->nom_jeu;
+        return $this->name;
     }
 
     /**
@@ -43,9 +45,9 @@ function __construct($data = array())
      *
      * @return self
      */
-    public function setNomJeu($nom_jeu)
+    public function setName($nom_jeu)
     {
-        $this->nom_jeu = $nom_jeu;
+        $this->name = $nom_jeu;
 
         return $this;
     }
@@ -55,9 +57,9 @@ function __construct($data = array())
      *
      * @return mixed
      */
-    public function getEditeur()
+    public function getEditor()
     {
-        return $this->editeur;
+        return $this->editor;
     }
 
     /**
@@ -67,9 +69,9 @@ function __construct($data = array())
      *
      * @return self
      */
-    public function setEditeur($editeur)
+    public function setEditor($editeur)
     {
-        $this->editeur = $editeur;
+        $this->editor = $editeur;
 
         return $this;
     }
@@ -218,20 +220,68 @@ function __construct($data = array())
         return $this;
     }
 
-    public function ajouter(stdClass $objet, PDO $db){
-
+    public function voir($id){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/'.$id);
+      $jeu_data = json_decode($reponse->getBody()->getContents(), true);
+      $jeu = new JeuModel($jeu_data);
+      return $jeu;
     }
 
-    public function voir($id, PDO $db){
+    public function voirJeuSQL($id, PDO $db){
+     $requete = 'SELECT * FROM jeux WHERE id = :id';
+     $requete_preparee = $db->prepare($requete);
+     $result = $requete_preparee->execute(['id' => $id]);
+     $tableau_jeu = $requete_preparee->fetch(PDO::FETCH_ASSOC);
+     $objet_jeu = self::transformArrayToObject($tableau_jeu);
+     return $objet_jeu;
+   }
 
+   private function transformArrayToObject($tableau_jeu){
+      $jeu = new JeuModel();
+      $jeu->setId($tableau_jeu['id']);
+      $jeu->setName($tableau_jeu['nom_jeu']);
+      $jeu->setEditor($tableau_jeu['editeur']);
+      $jeu->setAnneeSortie($tableau_jeu['annee']);
+      $jeu->setPhotos($tableau_jeu['photo']);
+      $jeu->setDescriptif($tableau_jeu['descriptif']);
+      $jeu->setCategorie($tableau_jeu['categorie']);
+      $jeu->setDuree($tableau_jeu['duree']);
+      $jeu->setNombreJoueur($tableau_jeu['nombre_joueur']);
+      return $jeu;
+    }
+
+    public function lister(){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $reponse = $client->request('GET','/vanessakovalsky/BoardGames/1.0.0/boardgame/findByStatus');
+      $jeu_data = json_decode($reponse->getBody()->getContents(), true);
+      $table_jeu = [];
+      foreach($jeu_data as $jeu_single){
+        $table_jeu[] =  new JeuModel($jeu_single);
+      }
+      return $table_jeu;
+    }
+
+    public function ajouter(stdClass $objet){
     }
 
     public function modifier(){
-
     }
 
-    public function supprimer();
+    public function supprimer(){
+    }
 
-    public function lister(PDO $db);
 
 }

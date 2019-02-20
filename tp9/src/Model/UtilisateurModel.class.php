@@ -1,12 +1,16 @@
 <?php
 
+use GuzzleHttp\Client;
+
+include_once('./src/Interface/EntiteInterface.php');
+
 /**
  *
  */
-class UtilisateurModel //implements EntiteInterface
+class UtilisateurModel implements EntiteInterface
 {
 
-  protected $nom;
+  protected $firstName;
   protected $email;
   protected $identifant;
   protected $prenom;
@@ -30,9 +34,9 @@ class UtilisateurModel //implements EntiteInterface
      *
      * @return mixed
      */
-    public function getNom()
+    public function getFirstName()
     {
-        return $this->nom;
+        return $this->firstName;
     }
 
     /**
@@ -42,9 +46,9 @@ class UtilisateurModel //implements EntiteInterface
      *
      * @return self
      */
-    public function setNom($nom)
+    public function setFirstName($nom)
     {
-        $this->nom = $nom;
+        $this->firstName = $nom;
 
         return $this;
     }
@@ -217,14 +221,66 @@ class UtilisateurModel //implements EntiteInterface
         return $this;
     }
 
-    public function ajouter(stdClass $objet, PDO $db);
+    public function ajouter(stdClass $objet){
 
-    public function voir($id, PDO $db);
+    }
 
-    public function modifier();
+    public function voir($id){
 
-    public function supprimer();
+    }
 
-    public function lister(PDO $db);
+    public function modifier(){
+
+    }
+
+    public function supprimer(){
+
+    }
+
+    public function lister(){
+
+    }
+
+    public function connexion($args){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $request = '/vanessakovalsky/BoardGames/1.0.0/user/login?username='.$args['inputEmail'].'&password='.$args['inputPassword'];
+      $reponse = $client->request('GET',$request);
+      $user_status = $reponse->getStatusCode();
+      if($user_status == 200){
+        $user = self::getUserByUsername($args['inputEmail']);
+        return $user;
+      }
+      else {
+        return "connexion impossible";
+      }
+    }
+
+    public function getUserByUsername($username){
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $request = '/vanessakovalsky/BoardGames/1.0.0/user/'.$username;
+      $reponse = $client->request('GET',$request);
+      $user_status = $reponse->getStatusCode();
+      if($user_status == 200){
+        //On construit un objet UserModel
+        $user_data = json_decode($reponse->getBody()->getContents(), true);
+        $user = new static($user_data);
+        return $user;
+      }
+      else {
+        return "connexion impossible";
+      }
+    }
 
 }

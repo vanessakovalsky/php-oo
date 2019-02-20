@@ -17,7 +17,6 @@ class JeuController
       include_once('./src/Model/JeuModel.class.php');
       $jeuModel = new JeuModel();
       $jeuModel->setNomJeu($values['nom_jeu']);
-      $jeuModel->ajouter();
       return 'Mon jeu a été ajouté !'.$jeuModel->getNomJeu();
     }
   }
@@ -31,10 +30,18 @@ class JeuController
   }
 
   public function ListeJeu(){
-
+    include_once('./src/Model/JeuModel.class.php');
+    $jeuModel = new JeuModel();
+    $reponse_voir_jeu = $jeuModel->lister();
+    $content = include_once('./src/View/liste_jeu.html.php');
+    return $content;
   }
 
-  public function VoirJeu(Jeu $jeu){
-
+  public function VoirJeu($jid){
+    include_once('./src/Model/JeuModel.class.php');
+    $jeuModel = new JeuModel();
+    $jeu = $jeuModel->voir($jid);
+    $content = include_once('./src/View/voir_jeu.html.php');
+    return $content;
   }
 }

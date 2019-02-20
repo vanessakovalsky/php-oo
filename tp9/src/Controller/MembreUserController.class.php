@@ -1,17 +1,19 @@
 <?php
 
-// namespace Controller;
-//
-// use Controller\UtilisateurController as Utilisateur;
-include_once('UtilisateurController.class.php');
-
 /**
  *
  */
-class MembreUserController extends UtilisateurController
+include_once('UtilisateurController.class.php');
+
+class MembreUser extends UtilisateurController
 {
+
+  function __construct()
+  {
+    // code...
+  }
   /*
-   * En tant que member accés autorisé à certaines actions
+   * En tant qu'admin accés autorisé à tous les actions
    */
   public function has_access($action){
     if(in_array($action, ['ListeJeu'])){

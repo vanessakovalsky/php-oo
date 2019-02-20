@@ -16,7 +16,6 @@ abstract class UtilisateurController
       include_once('./src/Model/UtilisateurModel.class.php');
       $utilisateur = new UtilisateurModel();
       $utilisateur->setNom($values['nom']);
-      $utilisateur->ajouter();
       return 'Mon Utilisateur a été ajouté ! '.$utilisateur->getNom();
     }
   }
@@ -28,7 +27,5 @@ abstract class UtilisateurController
   public function ModificationUtilisateur($uid, $values = NULL){
     return 'UID de l\'utilisateur à modifier'. $uid;
   }
-
-  abstract public function has_access($action);
 
 }
