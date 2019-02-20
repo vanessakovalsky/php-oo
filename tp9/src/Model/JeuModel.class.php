@@ -1,8 +1,9 @@
 <?php
 
-use GuzzleHttp\Client;
+namespace Model;
 
-include_once('./src/Interface/EntiteInterface.php');
+use GuzzleHttp\Client;
+use EntiteInterface\EntiteInterface;
 
 /**
  *
@@ -221,7 +222,6 @@ function __construct($data = array())
     }
 
     public function voir($id){
-      include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
           'base_uri' => 'http://virtserver.swaggerhub.com',
@@ -258,7 +258,6 @@ function __construct($data = array())
     }
 
     public function lister(){
-      include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
           'base_uri' => 'http://virtserver.swaggerhub.com',
@@ -274,7 +273,7 @@ function __construct($data = array())
       return $table_jeu;
     }
 
-    public function ajouter(stdClass $objet){
+    public function ajouter(object $objet){
     }
 
     public function modifier(){

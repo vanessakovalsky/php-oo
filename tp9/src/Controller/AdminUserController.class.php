@@ -1,12 +1,14 @@
 <?php
+namespace Controller;
+
+use Session\Session;
+use Model\UtilisateurModel;
 
 /**
  *
  */
- include_once('UtilisateurController.class.php');
- include_once('./src/Session.php');
 
-class AdminUser extends UtilisateurController
+class AdminUserController extends UtilisateurController
 {
   private $session;
 
@@ -23,7 +25,6 @@ class AdminUser extends UtilisateurController
     }
     //traiter le formulaire
     else{
-      include_once('./src/Model/UtilisateurModel.class.php');
       $userModel = new UtilisateurModel();
       $result_connexion = $userModel->connexion($_POST);
       if($result_connexion instanceOf UtilisateurModel){

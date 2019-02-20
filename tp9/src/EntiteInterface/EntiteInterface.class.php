@@ -1,11 +1,13 @@
 <?php
 
+namespace EntiteInterface;
+
 /**
  *
  */
 interface EntiteInterface
 {
-  public function ajouter(stdClass $objet);
+  public function ajouter(object $objet);
 
   public function voir($id);
 

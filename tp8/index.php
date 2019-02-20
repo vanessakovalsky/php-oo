@@ -11,7 +11,7 @@ catch(Exception $e)
   $exception = new KingoludoException();
   $exception->showMessage('erreur connexion db');
 }
-include_once('./src/Session.php');
+include_once('./src/Session.php');;
 $session = new Session();
 
 include_once('src/Controller/RouterController.class.php');

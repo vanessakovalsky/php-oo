@@ -1,8 +1,9 @@
 <?php
 
-use GuzzleHttp\Client;
+namespace Model;
 
-include_once('./src/Interface/EntiteInterface.php');
+use GuzzleHttp\Client;
+use EntiteInterface\EntiteInterface;
 
 /**
  *
@@ -221,7 +222,7 @@ class UtilisateurModel implements EntiteInterface
         return $this;
     }
 
-    public function ajouter(stdClass $objet){
+    public function ajouter(object $objet){
 
     }
 
@@ -242,7 +243,6 @@ class UtilisateurModel implements EntiteInterface
     }
 
     public function connexion($args){
-      include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
           'base_uri' => 'http://virtserver.swaggerhub.com',
@@ -262,7 +262,6 @@ class UtilisateurModel implements EntiteInterface
     }
 
     public function getUserByUsername($username){
-      include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
           'base_uri' => 'http://virtserver.swaggerhub.com',

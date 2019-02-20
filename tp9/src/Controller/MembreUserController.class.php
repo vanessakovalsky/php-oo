@@ -1,9 +1,12 @@
 <?php
 
+namespace Controller;
+
+use Controller\UtilisateurController;
+
 /**
  *
  */
-include_once('UtilisateurController.class.php');
 
 class MembreUser extends UtilisateurController
 {

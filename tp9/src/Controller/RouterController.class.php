@@ -1,7 +1,9 @@
 <?php
+namespace Controller;
 
-include_once('./src/Session.php');
-
+use Session\Session;
+use Controller\AdminUserController;
+use Controller\JeuController;
 
 class RouterController {
 
@@ -9,24 +11,20 @@ class RouterController {
     if($method == 'POST'){
       switch($action){
         case 'Connexion':
-          include_once('AdminUserController.class.php');
-          $content = AdminUser::connexion($session);
+          $content = AdminUserController::connexion($session);
           return $content;
           break;
         case 'AjoutJeu':
-          include_once('JeuController.class.php');
           $jeu = new JeuController();
           $content = $jeu->AjoutJeu($_POST);
           return $content;
         case 'AjoutUtilisateur':
-          include_once('AdminUserController.class.php');
-          $utilisateur = new AdminUser();
+          $utilisateur = new AdminUserController($session);
           $content = $utilisateur->AjoutUtilisateur($_POST);
           return $content;
         case 'ModificationUtilisateur':
-            include_once('AdminUserController.class.php');
             $user_id = $_GET['uid'];
-            $utilisateur = new AdminUser();
+            $utilisateur = new AdminUserController($session);
             $content = $utilisateur->ModificationUtilisateur($user_id, $_POST);
             return $content;
         default:
@@ -36,21 +34,18 @@ class RouterController {
     else {
     switch($action){
       case 'Connexion';
-        include_once('AdminUserController.class.php');
         ob_start();
-        $content = AdminUser::connexion($session);
+        $content = AdminUserController::connexion($session);
         $content = ob_get_clean();
         return $content;
         break;
       case 'Deconnexion';
-        include_once('AdminUserController.class.php');
         ob_start();
-        $content = AdminUser::deconnexion($session);
+        $content = AdminUserController::deconnexion($session);
         $content = ob_get_clean();
         return $content;
         break;
       case 'ListeJeu':
-        include_once('JeuController.class.php');
         $jeu = new JeuController();
         ob_start();
         $content = $jeu->ListeJeu();
@@ -58,7 +53,6 @@ class RouterController {
         return $content;
         break;
       case 'AjoutJeu':
-        include_once('JeuController.class.php');
         $jeu = new JeuController();
         ob_start();
         $jeu->AjoutJeu();
@@ -66,28 +60,23 @@ class RouterController {
         return $content;
         break;
       case 'AjoutUtilisateur':
-        include_once('AdminUserController.class.php');
-        $utilisateur = new AdminUser();
+        $utilisateur = new AdminUserController($session);
         ob_start();
         $content = $utilisateur->AjoutUtilisateur();
         $content = ob_get_clean();
         return $content;
         break;
       case 'ModificationUtilisateur':
-          include_once('AdminUserController.class.php');
-          $utilisateur = new AdminUser();
+          $utilisateur = new AdminUserController($session);
           $user_id = $_GET['uid'];
           $content = $utilisateur->ModificationUtilisateur($user_id);
           return $content;
           break;
       case 'SuppressionUtilisateur':
-        include_once('AdminUserController.class.php');
         break;
       case 'VoirUtilisateur':
-          include_once('AdminUserController.class.php');
           break;
        case 'VoirJeu':
-          include_once('JeuController.class.php');
           $jeu = new JeuController();
           ob_start();
           $content = $jeu->voirJeu(1);

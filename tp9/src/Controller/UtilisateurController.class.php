@@ -1,5 +1,9 @@
 <?php
 
+namespace Controller;
+
+use Model\UtilisateurModel;
+
 /**
  *
  */
@@ -13,7 +17,6 @@ abstract class UtilisateurController
     }
     //traiter le formulaire
     else{
-      include_once('./src/Model/UtilisateurModel.class.php');
       $utilisateur = new UtilisateurModel();
       $utilisateur->setNom($values['nom']);
       return 'Mon Utilisateur a été ajouté ! '.$utilisateur->getNom();
