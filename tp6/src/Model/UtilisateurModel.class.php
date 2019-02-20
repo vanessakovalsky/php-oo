@@ -233,4 +233,8 @@ class UtilisateurModel implements EntiteInterface
 
     public function lister(){}
 
+      public function __toString(){
+        return $this->getName();
+      }
+
 }

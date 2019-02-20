@@ -263,6 +263,24 @@ class UtilisateurModel implements EntiteInterface
 
     public function getUserByUsername($username){
       return 'connecté ' . $username;
+      include_once('./vendor/autoload.php');
+      $client = new Client([
+          // Base URI is used with relative requests
+          'base_uri' => 'http://virtserver.swaggerhub.com',
+          // You can set any number of default request options.
+          'timeout'  => 2.0,
+      ]);
+      $request = '/vanessakovalsky/BoardGames/1.0.0/user/'.$username;
+      $reponse = $client->request('GET',$request);
+      $user_status = $reponse->getStatusCode();
+      if($user_status == 200){
+        //On construit un objet UserModel
+        $user = '';
+        return $user;
+      }
+      else {
+        return "connexion impossible";
+      }
     }
 
 }
