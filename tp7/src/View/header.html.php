@@ -25,6 +25,7 @@
             <a class="dropdown-item" href="index.php?actions=AjoutUtilisateur">Ajouter un utilisateur</a>
           </div>
         </li>
+        <li class="nav-item"><a class="nav-link" href="index.php?actions=Connexion">Connexion</a></li>
       </ul>
     </div>
   </nav>

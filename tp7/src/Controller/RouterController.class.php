@@ -27,6 +27,13 @@ class RouterController {
     }
     else {
     switch($action){
+      case 'Connexion';
+        include_once('AdminUserController.class.php');
+        ob_start();
+        $content = AdminUser::connexion();
+        $content = ob_get_clean();
+        return $content;
+        break;
       case 'ListeJeu':
         include_once('JeuController.class.php');
         $jeu = new JeuController();

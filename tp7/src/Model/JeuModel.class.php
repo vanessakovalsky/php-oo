@@ -2,10 +2,12 @@
 
 use GuzzleHttp\Client;
 
+include_once('./src/Interface/EntiteInterface.php');
+
 /**
  *
  */
-class JeuModel
+class JeuModel implements EntiteInterface
 {
 
 private $name;
@@ -218,7 +220,7 @@ function __construct($data = array())
         return $this;
     }
 
-    public function voirJeu($id){
+    public function voir($id){
       include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
@@ -255,7 +257,7 @@ function __construct($data = array())
       return $jeu;
     }
 
-    public function listeJeu(){
+    public function lister(){
       include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
@@ -271,5 +273,15 @@ function __construct($data = array())
       }
       return $table_jeu;
     }
+
+    public function ajouter(stdClass $objet){
+    }
+
+    public function modifier(){
+    }
+
+    public function supprimer(){
+    }
+
 
 }
