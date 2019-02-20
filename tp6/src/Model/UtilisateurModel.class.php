@@ -219,14 +219,18 @@ class UtilisateurModel implements EntiteInterface
         return $this;
     }
 
-    public function ajouter(stdClass $objet);
+    public function ajouter(UtilisateurModel $objet){
 
-    public function voir($id);
+    }
 
-    public function modifier();
+    public function voir($id){
 
-    public function supprimer();
+    }
 
-    public function lister();
+    public function modifier(){}
+
+    public function supprimer(){}
+
+    public function lister(){}
 
 }

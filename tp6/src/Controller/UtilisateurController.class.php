@@ -15,6 +15,7 @@ abstract class UtilisateurController
     else{
       include_once('./src/Model/UtilisateurModel.class.php');
       $utilisateur = new UtilisateurModel();
+      
       $utilisateur->setNom($values['nom']);
       return 'Mon Utilisateur a été ajouté ! '.$utilisateur->getNom();
     }

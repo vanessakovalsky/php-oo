@@ -5,6 +5,11 @@ class RouterController {
   public function route($method, $action){
     if($method == 'POST'){
       switch($action){
+        case 'Connexion':
+          include_once('AdminUserController.class.php');
+          $content = AdminUser::connexion($_POST);
+          return $content;
+          break;
         case 'AjoutJeu':
           include_once('JeuController.class.php');
           $jeu = new JeuController();

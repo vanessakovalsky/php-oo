@@ -22,10 +22,9 @@ class AdminUser extends UtilisateurController
     //traiter le formulaire
     else{
       include_once('./src/Model/UtilisateurModel.class.php');
-      die(var_dump($_POST));
-      $jeuModel = new JeuModel();
-      $jeuModel->setNomJeu($_POST['login']);
-      return 'Mon jeu a été ajouté !'.$jeuModel->getNomJeu();
+      $userModel = new UtilisateurModel();
+      $result_connexion = $userModel->connexion($_POST);
+      return 'Mon utilisateur est '. $result_connexion;
     }
   }
 
