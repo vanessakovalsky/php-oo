@@ -1,13 +1,16 @@
 <?php
 
+include_once('./src/Session.php');
+
+
 class RouterController {
 
-  public function route($method, $action){
+  public function route($method, $action, Session $session){
     if($method == 'POST'){
       switch($action){
         case 'Connexion':
           include_once('AdminUserController.class.php');
-          $content = AdminUser::connexion($_POST);
+          $content = AdminUser::connexion($session);
           return $content;
           break;
         case 'AjoutJeu':
@@ -35,7 +38,7 @@ class RouterController {
       case 'Connexion';
         include_once('AdminUserController.class.php');
         ob_start();
-        $content = AdminUser::connexion();
+        $content = AdminUser::connexion($session);
         $content = ob_get_clean();
         return $content;
         break;

@@ -10,7 +10,7 @@ include_once('./src/Interface/EntiteInterface.php');
 class UtilisateurModel implements EntiteInterface
 {
 
-  protected $nom;
+  protected $firstName;
   protected $email;
   protected $identifant;
   protected $prenom;
@@ -34,9 +34,9 @@ class UtilisateurModel implements EntiteInterface
      *
      * @return mixed
      */
-    public function getNom()
+    public function getFirstName()
     {
-        return $this->nom;
+        return $this->firstName;
     }
 
     /**
@@ -46,9 +46,9 @@ class UtilisateurModel implements EntiteInterface
      *
      * @return self
      */
-    public function setNom($nom)
+    public function setFirstName($nom)
     {
-        $this->nom = $nom;
+        $this->firstName = $nom;
 
         return $this;
     }
@@ -262,7 +262,6 @@ class UtilisateurModel implements EntiteInterface
     }
 
     public function getUserByUsername($username){
-      return 'connecté ' . $username;
       include_once('./vendor/autoload.php');
       $client = new Client([
           // Base URI is used with relative requests
@@ -275,7 +274,8 @@ class UtilisateurModel implements EntiteInterface
       $user_status = $reponse->getStatusCode();
       if($user_status == 200){
         //On construit un objet UserModel
-        $user = '';
+        $user_data = json_decode($reponse->getBody()->getContents(), true);
+        $user = new static($user_data);
         return $user;
       }
       else {

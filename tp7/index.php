@@ -10,9 +10,11 @@ include_once('config.php');
 // {
 //     die('Erreur : '.$e->getMessage());
 // }
+include_once('./src/Session.php');
+$session = new Session();
 
 include_once('src/Controller/RouterController.class.php');
 $router = new RouterController();
-$content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions']);
+$content = $router->route($_SERVER['REQUEST_METHOD'],$_GET['actions'],$session);
 
 include_once('src/View/template.php');
