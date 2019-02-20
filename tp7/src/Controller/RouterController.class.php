@@ -42,6 +42,13 @@ class RouterController {
         $content = ob_get_clean();
         return $content;
         break;
+      case 'Deconnexion';
+        include_once('AdminUserController.class.php');
+        ob_start();
+        $content = AdminUser::deconnexion($session);
+        $content = ob_get_clean();
+        return $content;
+        break;
       case 'ListeJeu':
         include_once('JeuController.class.php');
         $jeu = new JeuController();

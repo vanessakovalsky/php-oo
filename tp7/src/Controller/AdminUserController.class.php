@@ -46,6 +46,13 @@ class AdminUser extends UtilisateurController
     }
   }
 
+  public static function deconnexion(Session $session){
+    if($session->session_exist('user_name')){
+      $session->remove_session('user_name');
+      $session->remove_session('user_role');
+    }
+  }
+
   /*
    * En tant qu'admin accés autorisé à tous les actions
    */

@@ -16,12 +16,12 @@
           <a class="nav-link dropdown-toggle" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Jeux</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="index.php?actions=ListeJeu">Liste des jeux</a>
-            <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0){?>
+            <?php if(isset($_SESSION['user_name'])){// && $_SESSION['user_role'] == 0){?>
             <a class="dropdown-item" href="index.php?actions=AjoutJeu">Ajouter un jeu</a>
             <?php }?>
           </div>
         </li>
-        <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0){?>
+        <?php if(isset($_SESSION['user_name'])){// && $_SESSION['user_role'] == 0){?>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" id="dropdown02" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Utilisateur</a>
           <div class="dropdown-menu" aria-labelledby="dropdown02">
@@ -31,6 +31,9 @@
       <?php } ?>
       <?php if(!isset($_SESSION['user_name'])){?>
         <li class="nav-item"><a class="nav-link" href="index.php?actions=Connexion">Connexion</a></li>
+      <?php } ?>
+      <?php if(isset($_SESSION['user_name'])){?>
+        <li class="nav-item"><a class="nav-link" href="index.php?actions=Deconnexion">Déconnexion</a></li>
       <?php } ?>
       </ul>
     </div>
