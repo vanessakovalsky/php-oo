@@ -1,4 +1,0 @@
-== TP4 - Etendre la classe User ==
-
-- Déclarer des classes AdminUser et MembreUser qui héritent de la classe Utilisateur
-- Dans chacune des classes déclarer des fonctions d'accès aux différentes actions

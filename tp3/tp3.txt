@@ -1,6 +1,0 @@
-== TP3 - Déclarer les templates et actions de controller ==
-
-- Créer un modèle par classe
-- Créer les vues (templates) qui correspondent à chaque actions
-- Déclarer les fonctions dans le routeur pour chaque Action 
-- Dans les controlleurs, appeler les templates créés pour chaque action
